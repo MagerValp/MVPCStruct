@@ -95,7 +95,7 @@ class Struct: NSObject {
         return .littleEndian
     }
     
-    // Pack an array of data according to the format string. Return NSData
+    // Pack an array of values according to the format string. Return NSData
     // or nil if there's an error.
     class func pack(format: String, values: AnyObject[], error: NSErrorPointer) -> NSData? {
         let PAD_BYTE = UInt8(0x00)
