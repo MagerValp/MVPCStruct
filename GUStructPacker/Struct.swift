@@ -97,7 +97,7 @@ class Struct: NSObject {
     
     // Pack an array of data according to the format string. Return NSData
     // or nil if there's an error.
-    class func pack(format: String, data: AnyObject[], error: NSErrorPointer) -> NSData? {
+    class func pack(format: String, values: AnyObject[], error: NSErrorPointer) -> NSData? {
         let PAD_BYTE = UInt8(0x00)
         let ERROR_PACKING = -1
         
@@ -159,10 +159,10 @@ class Struct: NSObject {
                 
                 default:
                     
-                    if index >= data.count {
-                        return failure("expected at least \(index) items for packing, got \(data.count)")
+                    if index >= values.count {
+                        return failure("expected at least \(index) items for packing, got \(values.count)")
                     }
-                    let rawValue: AnyObject = data[index++]
+                    let rawValue: AnyObject = values[index++]
                     
                     switch c {
                         
@@ -293,8 +293,8 @@ class Struct: NSObject {
             repeat = 0
         }
         
-        if index != data.count {
-            return failure("expected \(index) items for packing, got \(data.count)")
+        if index != values.count {
+            return failure("expected \(index) items for packing, got \(values.count)")
         }
         return NSData(bytes: bytes, length: bytes.count)
     }
