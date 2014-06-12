@@ -10,6 +10,7 @@
 		66B3D3E919497CE6001E1C52 /* GUStructPacker.h in Headers */ = {isa = PBXBuildFile; fileRef = 66B3D3E819497CE6001E1C52 /* GUStructPacker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66B3D3EF19497CE6001E1C52 /* GUStructPacker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B3D3E319497CE6001E1C52 /* GUStructPacker.framework */; };
 		66B3D3F619497CE6001E1C52 /* GUStructPackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3D3F519497CE6001E1C52 /* GUStructPackerTests.swift */; };
+		66B3D40019497D41001E1C52 /* Struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3D3FF19497D41001E1C52 /* Struct.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		66B3D3EE19497CE6001E1C52 /* GUStructPackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GUStructPackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66B3D3F419497CE6001E1C52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66B3D3F519497CE6001E1C52 /* GUStructPackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GUStructPackerTests.swift; sourceTree = "<group>"; };
+		66B3D3FF19497D41001E1C52 /* Struct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Struct.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				66B3D3E819497CE6001E1C52 /* GUStructPacker.h */,
+				66B3D3FF19497D41001E1C52 /* Struct.swift */,
 				66B3D3E619497CE6001E1C52 /* Supporting Files */,
 			);
 			path = GUStructPacker;
@@ -210,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66B3D40019497D41001E1C52 /* Struct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +320,7 @@
 		66B3D3FA19497CE6001E1C52 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -327,12 +332,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		66B3D3FB19497CE6001E1C52 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -400,6 +407,7 @@
 				66B3D3FB19497CE6001E1C52 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		66B3D3FC19497CE6001E1C52 /* Build configuration list for PBXNativeTarget "GUStructPackerTests" */ = {
 			isa = XCConfigurationList;
@@ -408,6 +416,7 @@
 				66B3D3FE19497CE6001E1C52 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
