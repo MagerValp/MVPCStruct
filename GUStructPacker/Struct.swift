@@ -129,15 +129,19 @@ class Struct: NSObject {
         }
         
         for c in format {
-            // Integers are repeat counters. Consume and continue.
+            // First test if the format string contains an integer. In that case
+            // we feed it into the repeat counter and go to the next character.
             if let value = String(c).toInt() {
                 repeat = repeat * 10 + value
                 continue
             }
-            // Process repeat count values, minimum of 1.
-            for i in 0..(repeat > 0 ? repeat : 1) {
+            // The next step depends on if we've accumulated a repeat count.
+            if repeat == 0 {
+                
+                // With a repeat count of 0 we check for control characters.
                 switch c {
                 
+                // Control endianness.
                 case "@":
                     endianness = Struct.platformEndianness()
                     alignment = true
@@ -153,140 +157,158 @@ class Struct: NSObject {
                 case "!":
                     endianness = Endianness.bigEndian
                     alignment = false
-                
-                case "x":
-                    bytes.append(PAD_BYTE)
-                
+                    
+                case " ":
+                    // Whitespace is allowed between formats.
+                    break
+                    
                 default:
+                    // No control character found so set the repeat count to 1
+                    // and evaluate format characters.
+                    repeat = 1
+                }
+            }
+            
+            if repeat > 0 {
+                // If we have a repeat count we expect a format character.
+                
+                for i in 0..repeat {
                     
-                    if index >= values.count {
-                        return failure("expected at least \(index) items for packing, got \(values.count)")
-                    }
-                    let rawValue: AnyObject = values[index++]
-                    
-                    switch c {
+                    // Check if it's a pad byte.
+                    if c == "x" {
+                        bytes.append(PAD_BYTE)
+                    } else {
+                        // Otherwise we pop a value from the array.
+                        if index >= values.count {
+                            return failure("expected at least \(index) items for packing, got \(values.count)")
+                        }
+                        let rawValue: AnyObject = values[index++]
                         
-                    case "c":
-                        if let str = rawValue as? String {
-                            let codePoint = str.utf16[0]
-                            if codePoint < 128 {
-                                bytes.append(UInt8(codePoint))
+                        switch c {
+                            
+                        case "c":
+                            if let str = rawValue as? String {
+                                let codePoint = str.utf16[0]
+                                if codePoint < 128 {
+                                    bytes.append(UInt8(codePoint))
+                                } else {
+                                    return failure("char format requires String of length 1")
+                                }
                             } else {
                                 return failure("char format requires String of length 1")
                             }
-                        } else {
-                            return failure("char format requires String of length 1")
-                        }
-                        
-                    case "b":
-                        if let value = rawValue as? Int {
-                            if value >= -0x80 && value <= 0x7f {
-                                bytes.append(UInt8(value & 0xff))
+                            
+                        case "b":
+                            if let value = rawValue as? Int {
+                                if value >= -0x80 && value <= 0x7f {
+                                    bytes.append(UInt8(value & 0xff))
+                                } else {
+                                    return failure("value outside valid range of Int8")
+                                }
                             } else {
-                                return failure("value outside valid range of Int8")
+                                return failure("cannot convert argument to Int")
                             }
-                        } else {
-                            return failure("cannot convert argument to Int")
-                        }
-                        
-                    case "B":
-                        if let value = rawValue as? UInt {
-                            if value > 0xff {
-                                return failure("value outside valid range of UInt8")
+                            
+                        case "B":
+                            if let value = rawValue as? UInt {
+                                if value > 0xff {
+                                    return failure("value outside valid range of UInt8")
+                                } else {
+                                    bytes.append(UInt8(value))
+                                }
                             } else {
-                                bytes.append(UInt8(value))
+                                return failure("cannot convert argument to UInt")
                             }
-                        } else {
-                            return failure("cannot convert argument to UInt")
-                        }
-                        
-                    case "?":
-                        if let value = rawValue as? Bool {
-                            if value {
-                                bytes.append(UInt8(1))
+                            
+                        case "?":
+                            if let value = rawValue as? Bool {
+                                if value {
+                                    bytes.append(UInt8(1))
+                                } else {
+                                    bytes.append(UInt8(0))
+                                }
                             } else {
-                                bytes.append(UInt8(0))
+                                return failure("cannot convert argument to Bool")
                             }
-                        } else {
-                            return failure("cannot convert argument to Bool")
-                        }
-                        
-                    case "h":
-                        if let value = rawValue as? Int {
-                            if value >= -0x8000 && value <= 0x7fff {
-                                padAlignment(2)
-                                bytes.extend(value.splitBytes(endianness, size: 2))
+                            
+                        case "h":
+                            if let value = rawValue as? Int {
+                                if value >= -0x8000 && value <= 0x7fff {
+                                    padAlignment(2)
+                                    bytes.extend(value.splitBytes(endianness, size: 2))
+                                } else {
+                                    return failure("value outside valid range of Int16")
+                                }
                             } else {
-                                return failure("value outside valid range of Int16")
+                                return failure("cannot convert argument to Int")
                             }
-                        } else {
-                            return failure("cannot convert argument to Int")
-                        }
-                        
-                    case "H":
-                        if let value = rawValue as? UInt {
-                            if value > 0xffff {
-                                return failure("value outside valid range of UInt16")
+                            
+                        case "H":
+                            if let value = rawValue as? UInt {
+                                if value > 0xffff {
+                                    return failure("value outside valid range of UInt16")
+                                } else {
+                                    padAlignment(2)
+                                    bytes.extend(value.splitBytes(endianness, size: 2))
+                                }
                             } else {
-                                padAlignment(2)
-                                bytes.extend(value.splitBytes(endianness, size: 2))
+                                return failure("cannot convert argument to UInt")
                             }
-                        } else {
-                            return failure("cannot convert argument to UInt")
-                        }
-                        
-                    case "i", "l":
-                        if let value = rawValue as? Int {
-                            if value >= -0x80000000 && value <= 0x7fffffff {
-                                padAlignment(4)
-                                bytes.extend(value.splitBytes(endianness, size: 4))
+                            
+                        case "i", "l":
+                            if let value = rawValue as? Int {
+                                if value >= -0x80000000 && value <= 0x7fffffff {
+                                    padAlignment(4)
+                                    bytes.extend(value.splitBytes(endianness, size: 4))
+                                } else {
+                                    return failure("value outside valid range of Int32")
+                                }
                             } else {
-                                return failure("value outside valid range of Int32")
+                                return failure("cannot convert argument to Int")
                             }
-                        } else {
-                            return failure("cannot convert argument to Int")
-                        }
-                        
-                    case "I", "L":
-                        if let value = rawValue as? UInt {
-                            if value > 0xffffffff {
-                                return failure("value outside valid range of UInt32")
+                            
+                        case "I", "L":
+                            if let value = rawValue as? UInt {
+                                if value > 0xffffffff {
+                                    return failure("value outside valid range of UInt32")
+                                } else {
+                                    padAlignment(4)
+                                    bytes.extend(value.splitBytes(endianness, size: 4))
+                                }
                             } else {
-                                padAlignment(4)
-                                bytes.extend(value.splitBytes(endianness, size: 4))
+                                return failure("cannot convert argument to UInt")
                             }
-                        } else {
-                            return failure("cannot convert argument to UInt")
+                            
+                        case "q":
+                            if let value = rawValue as? Int {
+                                padAlignment(8)
+                                bytes.extend(value.splitBytes(endianness, size: 8))
+                            } else {
+                                return failure("cannot convert argument to Int")
+                            }
+                            
+                        case "Q":
+                            if let value = rawValue as? UInt {
+                                padAlignment(8)
+                                bytes.extend(value.splitBytes(endianness, size: 8))
+                            } else {
+                                return failure("cannot convert argument to UInt")
+                            }
+                            
+                        case "f", "d":
+                            assert(false, "float/double unimplemented")
+                            
+                        case "s", "p":
+                            assert(false, "cstring/pstring unimplemented")
+                            
+                        case "P":
+                            assert(false, "pointer unimplemented")
+                            
+                        default:
+                            return failure("bad character in format")
                         }
-                        
-                    case "q":
-                        if let value = rawValue as? Int {
-                            padAlignment(8)
-                            bytes.extend(value.splitBytes(endianness, size: 8))
-                        } else {
-                            return failure("cannot convert argument to Int")
-                        }
-                        
-                    case "Q":
-                        if let value = rawValue as? UInt {
-                            padAlignment(8)
-                            bytes.extend(value.splitBytes(endianness, size: 8))
-                        } else {
-                            return failure("cannot convert argument to UInt")
-                        }
-                        
-                    case "f", "d":
-                        assert(false, "float/double unimplemented")
-                        
-                    case "s", "p":
-                        assert(false, "cstring/pstring unimplemented")
-                    
-                    case "P":
-                        assert(false, "pointer unimplemented")
-                        
-                    default:
-                        return failure("bad character in format")
                     }
+                    
                 }
             }
             // Reset the repeat counter.

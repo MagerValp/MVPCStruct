@@ -92,15 +92,21 @@ class GUStructPackerTests: XCTestCase {
         }
     }
     
-    func testBadArgs() {
+    func testBadFormat() {
         var error: NSError?
         
-//        if let result = Struct.pack("10c", values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], error: &error) {
-//            XCTFail("result should be nil")
-//        }
-//        if let result = Struct.pack("10c", values: [1, 2, 3, 4, 5, 6, 7, 8, 9], error: &error) {
-//            XCTFail("result should be nil")
-//        }
+        if let result = Struct.pack("4@", values: [], error: &error) {
+            XCTFail("bad format should return nil")
+        }
+        if let result = Struct.pack("1 i", values: [1], error: &error) {
+            XCTFail("bad format should return nil")
+        }
+        if let result = Struct.pack("i", values: [], error: &error) {
+            XCTFail("bad format should return nil")
+        }
+        if let result = Struct.pack("i", values: [1, 2], error: &error) {
+            XCTFail("bad format should return nil")
+        }
     }
     
     func testPerformanceExample() {
