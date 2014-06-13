@@ -7,100 +7,100 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		66B3D3E919497CE6001E1C52 /* GUStructPacker.h in Headers */ = {isa = PBXBuildFile; fileRef = 66B3D3E819497CE6001E1C52 /* GUStructPacker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66B3D3EF19497CE6001E1C52 /* GUStructPacker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B3D3E319497CE6001E1C52 /* GUStructPacker.framework */; };
-		66B3D3F619497CE6001E1C52 /* GUStructPackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3D3F519497CE6001E1C52 /* GUStructPackerTests.swift */; };
-		66B3D40019497D41001E1C52 /* Struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3D3FF19497D41001E1C52 /* Struct.swift */; };
+		05A8B6C2194B1718006366DF /* MVPCStruct.h in Headers */ = {isa = PBXBuildFile; fileRef = 05A8B6C1194B1718006366DF /* MVPCStruct.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05A8B6C8194B1718006366DF /* MVPCStruct.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A8B6BC194B1718006366DF /* MVPCStruct.framework */; };
+		05A8B6CF194B1718006366DF /* MVPCStructTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A8B6CE194B1718006366DF /* MVPCStructTests.swift */; };
+		05A8B6D9194B1755006366DF /* CStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A8B6D8194B1755006366DF /* CStruct.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		66B3D3F019497CE6001E1C52 /* PBXContainerItemProxy */ = {
+		05A8B6C9194B1718006366DF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 66B3D3DA19497CE6001E1C52 /* Project object */;
+			containerPortal = 05A8B6B3194B1718006366DF /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 66B3D3E219497CE6001E1C52;
-			remoteInfo = GUStructPacker;
+			remoteGlobalIDString = 05A8B6BB194B1718006366DF;
+			remoteInfo = MVPCStruct;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		66B3D3E319497CE6001E1C52 /* GUStructPacker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GUStructPacker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		66B3D3E719497CE6001E1C52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		66B3D3E819497CE6001E1C52 /* GUStructPacker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GUStructPacker.h; sourceTree = "<group>"; };
-		66B3D3EE19497CE6001E1C52 /* GUStructPackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GUStructPackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		66B3D3F419497CE6001E1C52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		66B3D3F519497CE6001E1C52 /* GUStructPackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GUStructPackerTests.swift; sourceTree = "<group>"; };
-		66B3D3FF19497D41001E1C52 /* Struct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Struct.swift; sourceTree = "<group>"; };
+		05A8B6BC194B1718006366DF /* MVPCStruct.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MVPCStruct.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		05A8B6C0194B1718006366DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05A8B6C1194B1718006366DF /* MVPCStruct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MVPCStruct.h; sourceTree = "<group>"; };
+		05A8B6C7194B1718006366DF /* MVPCStructTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MVPCStructTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		05A8B6CD194B1718006366DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05A8B6CE194B1718006366DF /* MVPCStructTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPCStructTests.swift; sourceTree = "<group>"; };
+		05A8B6D8194B1755006366DF /* CStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CStruct.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		66B3D3DF19497CE6001E1C52 /* Frameworks */ = {
+		05A8B6B8194B1718006366DF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		66B3D3EB19497CE6001E1C52 /* Frameworks */ = {
+		05A8B6C4194B1718006366DF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66B3D3EF19497CE6001E1C52 /* GUStructPacker.framework in Frameworks */,
+				05A8B6C8194B1718006366DF /* MVPCStruct.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		66B3D3D919497CE6001E1C52 = {
+		05A8B6B2194B1718006366DF = {
 			isa = PBXGroup;
 			children = (
-				66B3D3E519497CE6001E1C52 /* GUStructPacker */,
-				66B3D3F219497CE6001E1C52 /* GUStructPackerTests */,
-				66B3D3E419497CE6001E1C52 /* Products */,
+				05A8B6BE194B1718006366DF /* MVPCStruct */,
+				05A8B6CB194B1718006366DF /* MVPCStructTests */,
+				05A8B6BD194B1718006366DF /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		66B3D3E419497CE6001E1C52 /* Products */ = {
+		05A8B6BD194B1718006366DF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				66B3D3E319497CE6001E1C52 /* GUStructPacker.framework */,
-				66B3D3EE19497CE6001E1C52 /* GUStructPackerTests.xctest */,
+				05A8B6BC194B1718006366DF /* MVPCStruct.framework */,
+				05A8B6C7194B1718006366DF /* MVPCStructTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		66B3D3E519497CE6001E1C52 /* GUStructPacker */ = {
+		05A8B6BE194B1718006366DF /* MVPCStruct */ = {
 			isa = PBXGroup;
 			children = (
-				66B3D3E819497CE6001E1C52 /* GUStructPacker.h */,
-				66B3D3FF19497D41001E1C52 /* Struct.swift */,
-				66B3D3E619497CE6001E1C52 /* Supporting Files */,
+				05A8B6C1194B1718006366DF /* MVPCStruct.h */,
+				05A8B6BF194B1718006366DF /* Supporting Files */,
+				05A8B6D8194B1755006366DF /* CStruct.swift */,
 			);
-			path = GUStructPacker;
+			path = MVPCStruct;
 			sourceTree = "<group>";
 		};
-		66B3D3E619497CE6001E1C52 /* Supporting Files */ = {
+		05A8B6BF194B1718006366DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				66B3D3E719497CE6001E1C52 /* Info.plist */,
+				05A8B6C0194B1718006366DF /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		66B3D3F219497CE6001E1C52 /* GUStructPackerTests */ = {
+		05A8B6CB194B1718006366DF /* MVPCStructTests */ = {
 			isa = PBXGroup;
 			children = (
-				66B3D3F519497CE6001E1C52 /* GUStructPackerTests.swift */,
-				66B3D3F319497CE6001E1C52 /* Supporting Files */,
+				05A8B6CE194B1718006366DF /* MVPCStructTests.swift */,
+				05A8B6CC194B1718006366DF /* Supporting Files */,
 			);
-			path = GUStructPackerTests;
+			path = MVPCStructTests;
 			sourceTree = "<group>";
 		};
-		66B3D3F319497CE6001E1C52 /* Supporting Files */ = {
+		05A8B6CC194B1718006366DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				66B3D3F419497CE6001E1C52 /* Info.plist */,
+				05A8B6CD194B1718006366DF /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -108,98 +108,98 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		66B3D3E019497CE6001E1C52 /* Headers */ = {
+		05A8B6B9194B1718006366DF /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66B3D3E919497CE6001E1C52 /* GUStructPacker.h in Headers */,
+				05A8B6C2194B1718006366DF /* MVPCStruct.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		66B3D3E219497CE6001E1C52 /* GUStructPacker */ = {
+		05A8B6BB194B1718006366DF /* MVPCStruct */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 66B3D3F919497CE6001E1C52 /* Build configuration list for PBXNativeTarget "GUStructPacker" */;
+			buildConfigurationList = 05A8B6D2194B1718006366DF /* Build configuration list for PBXNativeTarget "MVPCStruct" */;
 			buildPhases = (
-				66B3D3DE19497CE6001E1C52 /* Sources */,
-				66B3D3DF19497CE6001E1C52 /* Frameworks */,
-				66B3D3E019497CE6001E1C52 /* Headers */,
-				66B3D3E119497CE6001E1C52 /* Resources */,
+				05A8B6B7194B1718006366DF /* Sources */,
+				05A8B6B8194B1718006366DF /* Frameworks */,
+				05A8B6B9194B1718006366DF /* Headers */,
+				05A8B6BA194B1718006366DF /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = GUStructPacker;
-			productName = GUStructPacker;
-			productReference = 66B3D3E319497CE6001E1C52 /* GUStructPacker.framework */;
+			name = MVPCStruct;
+			productName = MVPCStruct;
+			productReference = 05A8B6BC194B1718006366DF /* MVPCStruct.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		66B3D3ED19497CE6001E1C52 /* GUStructPackerTests */ = {
+		05A8B6C6194B1718006366DF /* MVPCStructTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 66B3D3FC19497CE6001E1C52 /* Build configuration list for PBXNativeTarget "GUStructPackerTests" */;
+			buildConfigurationList = 05A8B6D5194B1718006366DF /* Build configuration list for PBXNativeTarget "MVPCStructTests" */;
 			buildPhases = (
-				66B3D3EA19497CE6001E1C52 /* Sources */,
-				66B3D3EB19497CE6001E1C52 /* Frameworks */,
-				66B3D3EC19497CE6001E1C52 /* Resources */,
+				05A8B6C3194B1718006366DF /* Sources */,
+				05A8B6C4194B1718006366DF /* Frameworks */,
+				05A8B6C5194B1718006366DF /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				66B3D3F119497CE6001E1C52 /* PBXTargetDependency */,
+				05A8B6CA194B1718006366DF /* PBXTargetDependency */,
 			);
-			name = GUStructPackerTests;
-			productName = GUStructPackerTests;
-			productReference = 66B3D3EE19497CE6001E1C52 /* GUStructPackerTests.xctest */;
+			name = MVPCStructTests;
+			productName = MVPCStructTests;
+			productReference = 05A8B6C7194B1718006366DF /* MVPCStructTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		66B3D3DA19497CE6001E1C52 /* Project object */ = {
+		05A8B6B3194B1718006366DF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0600;
-				ORGANIZATIONNAME = "Göteborgs universitet";
+				ORGANIZATIONNAME = AutoMac;
 				TargetAttributes = {
-					66B3D3E219497CE6001E1C52 = {
+					05A8B6BB194B1718006366DF = {
 						CreatedOnToolsVersion = 6.0;
 					};
-					66B3D3ED19497CE6001E1C52 = {
+					05A8B6C6194B1718006366DF = {
 						CreatedOnToolsVersion = 6.0;
-						TestTargetID = 66B3D3E219497CE6001E1C52;
+						TestTargetID = 05A8B6BB194B1718006366DF;
 					};
 				};
 			};
-			buildConfigurationList = 66B3D3DD19497CE6001E1C52 /* Build configuration list for PBXProject "GUStructPacker" */;
+			buildConfigurationList = 05A8B6B6194B1718006366DF /* Build configuration list for PBXProject "MVPCStruct" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 66B3D3D919497CE6001E1C52;
-			productRefGroup = 66B3D3E419497CE6001E1C52 /* Products */;
+			mainGroup = 05A8B6B2194B1718006366DF;
+			productRefGroup = 05A8B6BD194B1718006366DF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				66B3D3E219497CE6001E1C52 /* GUStructPacker */,
-				66B3D3ED19497CE6001E1C52 /* GUStructPackerTests */,
+				05A8B6BB194B1718006366DF /* MVPCStruct */,
+				05A8B6C6194B1718006366DF /* MVPCStructTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		66B3D3E119497CE6001E1C52 /* Resources */ = {
+		05A8B6BA194B1718006366DF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		66B3D3EC19497CE6001E1C52 /* Resources */ = {
+		05A8B6C5194B1718006366DF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -209,34 +209,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		66B3D3DE19497CE6001E1C52 /* Sources */ = {
+		05A8B6B7194B1718006366DF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66B3D40019497D41001E1C52 /* Struct.swift in Sources */,
+				05A8B6D9194B1755006366DF /* CStruct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		66B3D3EA19497CE6001E1C52 /* Sources */ = {
+		05A8B6C3194B1718006366DF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66B3D3F619497CE6001E1C52 /* GUStructPackerTests.swift in Sources */,
+				05A8B6CF194B1718006366DF /* MVPCStructTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		66B3D3F119497CE6001E1C52 /* PBXTargetDependency */ = {
+		05A8B6CA194B1718006366DF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 66B3D3E219497CE6001E1C52 /* GUStructPacker */;
-			targetProxy = 66B3D3F019497CE6001E1C52 /* PBXContainerItemProxy */;
+			target = 05A8B6BB194B1718006366DF /* MVPCStruct */;
+			targetProxy = 05A8B6C9194B1718006366DF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		66B3D3F719497CE6001E1C52 /* Debug */ = {
+		05A8B6D0194B1718006366DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -270,7 +270,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -280,7 +280,7 @@
 			};
 			name = Debug;
 		};
-		66B3D3F819497CE6001E1C52 /* Release */ = {
+		05A8B6D1194B1718006366DF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -309,7 +309,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -317,7 +317,7 @@
 			};
 			name = Release;
 		};
-		66B3D3FA19497CE6001E1C52 /* Debug */ = {
+		05A8B6D3194B1718006366DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -327,7 +327,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = GUStructPacker/Info.plist;
+				INFOPLIST_FILE = MVPCStruct/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -336,7 +336,7 @@
 			};
 			name = Debug;
 		};
-		66B3D3FB19497CE6001E1C52 /* Release */ = {
+		05A8B6D4194B1718006366DF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -346,7 +346,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = GUStructPacker/Info.plist;
+				INFOPLIST_FILE = MVPCStruct/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -354,7 +354,7 @@
 			};
 			name = Release;
 		};
-		66B3D3FD19497CE6001E1C52 /* Debug */ = {
+		05A8B6D6194B1718006366DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -366,14 +366,14 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = GUStructPackerTests/Info.plist;
+				INFOPLIST_FILE = MVPCStructTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		66B3D3FE19497CE6001E1C52 /* Release */ = {
+		05A8B6D7194B1718006366DF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -381,7 +381,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = GUStructPackerTests/Info.plist;
+				INFOPLIST_FILE = MVPCStructTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -391,34 +391,32 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		66B3D3DD19497CE6001E1C52 /* Build configuration list for PBXProject "GUStructPacker" */ = {
+		05A8B6B6194B1718006366DF /* Build configuration list for PBXProject "MVPCStruct" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				66B3D3F719497CE6001E1C52 /* Debug */,
-				66B3D3F819497CE6001E1C52 /* Release */,
+				05A8B6D0194B1718006366DF /* Debug */,
+				05A8B6D1194B1718006366DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		66B3D3F919497CE6001E1C52 /* Build configuration list for PBXNativeTarget "GUStructPacker" */ = {
+		05A8B6D2194B1718006366DF /* Build configuration list for PBXNativeTarget "MVPCStruct" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				66B3D3FA19497CE6001E1C52 /* Debug */,
-				66B3D3FB19497CE6001E1C52 /* Release */,
+				05A8B6D3194B1718006366DF /* Debug */,
+				05A8B6D4194B1718006366DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
-		66B3D3FC19497CE6001E1C52 /* Build configuration list for PBXNativeTarget "GUStructPackerTests" */ = {
+		05A8B6D5194B1718006366DF /* Build configuration list for PBXNativeTarget "MVPCStructTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				66B3D3FD19497CE6001E1C52 /* Debug */,
-				66B3D3FE19497CE6001E1C52 /* Release */,
+				05A8B6D6194B1718006366DF /* Debug */,
+				05A8B6D7194B1718006366DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 66B3D3DA19497CE6001E1C52 /* Project object */;
+	rootObject = 05A8B6B3194B1718006366DF /* Project object */;
 }

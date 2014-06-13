@@ -1,13 +1,12 @@
 //
-//  Struct.swift
-//  GUStructPacker
+//  CStruct.swift
+//  MVPCStruct
 //
-//  Created by Pelle on 2014-06-12.
-//  Copyright (c) 2014 Göteborgs universitet. All rights reserved.
+//  Created by Per Olofsson on 2014-06-13.
+//  Copyright (c) 2014 AutoMac. All rights reserved.
 //
 
 import Cocoa
-
 
 //      BYTE ORDER      SIZE            ALIGNMENT
 //  @   native          native          native
@@ -135,7 +134,7 @@ class CStruct: NSObject {
     let PAD_BYTE = UInt8(0)
     
     var platformEndianness: Endianness {
-        return .LittleEndian
+    return .LittleEndian
     }
     
     convenience init(format: String) {
@@ -191,22 +190,22 @@ class CStruct: NSObject {
                 endianness = .LittleEndian
             case .SetBigEndian:
                 endianness = .BigEndian
-            
+                
             case .SetAlign:
                 alignment = true
             case .UnsetAlign:
                 alignment = false
-            
+                
             case .SkipByte:
                 bytes.append(PAD_BYTE)
-            
+                
             case .Stop:
                 if index != values.count {
                     return failure("expected \(index) items for packing, got \(values.count)")
                 } else {
                     return NSData(bytes: bytes, length: bytes.count)
                 }
-            
+                
             default:
                 // No control ops found so pop the next value.
                 if index >= values.count {
@@ -337,9 +336,9 @@ class CStruct: NSObject {
                 default:
                     return failure("bad character in format")
                 }
-
+                
             }
-
+            
         }
         
         // This is actually never reached, we exit from .Stop.

@@ -1,16 +1,15 @@
 //
-//  GUStructPackerTests.swift
-//  GUStructPackerTests
+//  MVPCStructTests.swift
+//  MVPCStructTests
 //
-//  Created by Pelle on 2014-06-12.
-//  Copyright (c) 2014 Göteborgs universitet. All rights reserved.
+//  Created by Per Olofsson on 2014-06-13.
+//  Copyright (c) 2014 AutoMac. All rights reserved.
 //
 
 import XCTest
-import GUStructPacker
+import MVPCStruct
 
-
-class GUStructPackerTests: XCTestCase {
+class MVPCStructTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -114,13 +113,6 @@ class GUStructPackerTests: XCTestCase {
         }
         if let result = packer.pack([1, 2], format:"i", error: &error) {
             XCTFail("bad format should return nil")
-        }
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
         }
     }
     
