@@ -26,12 +26,13 @@ class GUStructPackerTests: XCTestCase {
         let facit = "Hello".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
         var error: NSError?
         
-        if let result = Struct.pack("ccccc", values: ["H", "e", "l", "l", "o"], error: &error) {
+        let packer = StructPacker()
+        if let result = packer.pack(["H", "e", "l", "l", "o"], format: "ccccc", error: &error) {
             XCTAssertEqual(result, facit)
         } else {
             XCTFail("result is nil")
         }
-        if let result = Struct.pack("5c", values: ["H", "e", "l", "l", "o"], error: &error) {
+        if let result = packer.pack(["H", "e", "l", "l", "o"], format: "5c", error: &error) {
             XCTAssertEqual(result, facit)
         } else {
             XCTFail("result is nil")
@@ -41,13 +42,14 @@ class GUStructPackerTests: XCTestCase {
     func testInts() {
         var error: NSError?
         let signedFacit = NSData(bytes: [0xff, 0xfe, 0xff, 0xfd, 0xff, 0xff, 0xff, 0xfc, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff] as UInt8[], length: 15)
-        if let result = Struct.pack("<bhiq", values: [-1, -2, -3, -4], error: &error) {
+        let packer = StructPacker()
+        if let result = packer.pack([-1, -2, -3, -4], format: "<bhiq", error: &error) {
             XCTAssertEqual(signedFacit, result)
         } else {
             XCTFail("result is nil")
         }
         let unsignedFacit = NSData(bytes: [0x01, 0x02, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00] as UInt8[], length: 15)
-        if let result = Struct.pack("<BHIQ", values: [1, 2, 3, 4], error: &error) {
+        if let result = packer.pack([1, 2, 3, 4], format: "<BHIQ", error: &error) {
             println("Unsigned result: \(result)")
         } else {
             XCTFail("result is nil")
@@ -58,22 +60,24 @@ class GUStructPackerTests: XCTestCase {
         // This test will fail on bigendian platforms.
         var error: NSError?
         
+        let packer = StructPacker()
+        
         let signedFacit16 = NSData(bytes: [0x01, 0x00, 0x02, 0x00] as UInt8[], length: 4)
-        if let result = Struct.pack("@BH", values: [1, 2], error: &error) {
+        if let result = packer.pack([1, 2], format: "@BH", error: &error) {
             XCTAssertEqual(signedFacit16, result)
         } else {
             XCTFail("result is nil")
         }
         
         let signedFacit32 = NSData(bytes: [0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00] as UInt8[], length: 8)
-        if let result = Struct.pack("@BI", values: [1, 2], error: &error) {
+        if let result = packer.pack([1, 2], format: "@BI", error: &error) {
             XCTAssertEqual(signedFacit32, result)
         } else {
             XCTFail("result is nil")
         }
         
         let signedFacit64 = NSData(bytes: [0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00] as UInt8[], length: 16)
-        if let result = Struct.pack("@BQ", values: [1, 2], error: &error) {
+        if let result = packer.pack([1, 2], format: "@BQ", error: &error) {
             XCTAssertEqual(signedFacit64, result)
         } else {
             XCTFail("result is nil")
@@ -85,7 +89,9 @@ class GUStructPackerTests: XCTestCase {
         
         let facit = NSData(bytes: [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e] as UInt8[], length: 14)
         
-        if let result = Struct.pack(">HIQ", values: [0x0102, 0x03040506, 0x0708090a0b0c0d0e], error: &error) {
+        let packer = StructPacker()
+        
+        if let result = packer.pack([0x0102, 0x03040506, 0x0708090a0b0c0d0e], format: ">HIQ", error: &error) {
             XCTAssertEqual(facit, result)
         } else {
             XCTFail("result is nil")
@@ -95,16 +101,18 @@ class GUStructPackerTests: XCTestCase {
     func testBadFormat() {
         var error: NSError?
         
-        if let result = Struct.pack("4@", values: [], error: &error) {
+        let packer = StructPacker()
+        
+        if let result = packer.pack([], format: "4@", error: &error) {
             XCTFail("bad format should return nil")
         }
-        if let result = Struct.pack("1 i", values: [1], error: &error) {
+        if let result = packer.pack([1], format:"1 i", error: &error) {
             XCTFail("bad format should return nil")
         }
-        if let result = Struct.pack("i", values: [], error: &error) {
+        if let result = packer.pack([], format:"i", error: &error) {
             XCTFail("bad format should return nil")
         }
-        if let result = Struct.pack("i", values: [1, 2], error: &error) {
+        if let result = packer.pack([1, 2], format:"i", error: &error) {
             XCTFail("bad format should return nil")
         }
     }
