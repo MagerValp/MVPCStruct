@@ -42,7 +42,7 @@ import Cocoa
 
 // Split a large integer into bytes.
 extension Int {
-    func splitBytes(endianness: StructPacker.Endianness, size: Int) -> UInt8[] {
+    func splitBytes(endianness: CStruct.Endianness, size: Int) -> UInt8[] {
         var bytes = UInt8[]()
         var shift: Int
         var step: Int
@@ -61,7 +61,7 @@ extension Int {
     }
 }
 extension UInt {
-    func splitBytes(endianness: StructPacker.Endianness, size: Int) -> UInt8[] {
+    func splitBytes(endianness: CStruct.Endianness, size: Int) -> UInt8[] {
         var bytes = UInt8[]()
         var shift: Int
         var step: Int
@@ -81,7 +81,7 @@ extension UInt {
 }
 
 
-class StructPacker: NSObject {
+class CStruct: NSObject {
     
     enum Error: Int {
         case Parsing = -1
