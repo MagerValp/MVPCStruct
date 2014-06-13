@@ -184,6 +184,13 @@ class CStruct: NSObject {
             // First check ops that don't consume values.
             switch op {
                 
+            case .Stop:
+                if index != values.count {
+                    return failure("expected \(index) items for packing, got \(values.count)")
+                } else {
+                    return NSData(bytes: bytes, length: bytes.count)
+                }
+                
             case .SetNativeEndian:
                 endianness = self.platformEndianness
             case .SetLittleEndian:
@@ -199,15 +206,8 @@ class CStruct: NSObject {
             case .SkipByte:
                 bytes.append(PAD_BYTE)
                 
-            case .Stop:
-                if index != values.count {
-                    return failure("expected \(index) items for packing, got \(values.count)")
-                } else {
-                    return NSData(bytes: bytes, length: bytes.count)
-                }
-                
             default:
-                // No control ops found so pop the next value.
+                // No control op found so pop the next value.
                 if index >= values.count {
                     return failure("expected at least \(index) items for packing, got \(values.count)")
                 }
@@ -339,7 +339,7 @@ class CStruct: NSObject {
                     }
                     
                 default:
-                    return failure("bad character in format")
+                    assert(false, "bad op in stream")
                 }
                 
             }
