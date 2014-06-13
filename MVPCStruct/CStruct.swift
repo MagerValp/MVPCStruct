@@ -34,7 +34,7 @@ import Cocoa
 //      d       double                  Double                  8
 //      s       char[]                  String
 //      p       char[]                  String
-//      P       void *                  CMutableVoidPointer
+//      P       void *                  UInt                    4/8
 //
 //      Floats and doubles are packed with IEEE 754 binary32 or binary64 format.
 
@@ -331,7 +331,12 @@ class CStruct: NSObject {
                     assert(false, "cstring/pstring unimplemented")
                     
                 case .PackPointer:
-                    assert(false, "pointer unimplemented")
+                    if let value = rawValue as? UInt {
+                        padAlignment(sizeof(CConstVoidPointer))
+                        bytes.extend(value.splitBytes(endianness, size: sizeof(CConstVoidPointer)))
+                    } else {
+                        return failure("cannot convert argument to UInt")
+                    }
                     
                 default:
                     return failure("bad character in format")
