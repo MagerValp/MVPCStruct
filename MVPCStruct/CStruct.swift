@@ -131,6 +131,23 @@ class CStruct: NSObject {
     
     var opStream = Ops[]()
     
+    let bytesForValue = [
+        Ops.SkipByte:       1,
+        Ops.PackChar:       1,
+        Ops.PackInt8:       1,
+        Ops.PackUInt8:      1,
+        Ops.PackBool:       1,
+        Ops.PackInt16:      2,
+        Ops.PackUInt16:     2,
+        Ops.PackInt32:      4,
+        Ops.PackUInt32:     4,
+        Ops.PackInt64:      8,
+        Ops.PackUInt64:     8,
+        Ops.PackFloat:      4,
+        Ops.PackDouble:     8,
+        Ops.PackPointer:    sizeof(CConstVoidPointer),
+    ]
+    
     let PAD_BYTE = UInt8(0)
     
     var platformEndianness: Endianness {
@@ -144,6 +161,161 @@ class CStruct: NSObject {
             assert(false, "format string parsing error")
         }
     }
+    
+    
+    // Unpacking.
+    
+    func unpack(data: NSData, format: String, error: NSErrorPointer) -> AnyObject[]? {
+        if !self.parseFormat(format, error: error) {
+            return nil
+        }
+        return self.unpack(data, error: error)
+    }
+    
+    func unpack(data: NSData, error: NSErrorPointer) -> AnyObject[]? {
+        
+        var values = AnyObject[]()
+        var index = 0
+        var alignment = true
+        var endianness = self.platformEndianness
+        
+        // Set error message and return nil.
+        func failure(message: String) -> AnyObject[]? {
+            if error {
+                error.memory = NSError(domain: ERROR_DOMAIN,
+                    code: Error.Unpacking.toRaw(),
+                    userInfo: [NSLocalizedDescriptionKey: message])
+            }
+            return nil
+        }
+        
+        // If alignment is requested, skip pad bytes until alignment is
+        // satisfied.
+        func skipAlignment(size: Int) {
+            if alignment {
+                let mask = size - 1
+                while (index & mask) != 0 {
+                    index++
+                }
+            }
+        }
+        
+        // Read UInt8 values from data.
+        func readBytes(count: Int) -> UInt8[]? {
+            var bytes = UInt8[]()
+            if index + count > data.length {
+                return nil
+            }
+            let ptr = UnsafePointer<UInt8>(data.bytes)
+            let unsafeBytes = UnsafeArray<UInt8>(start:ptr + index, length:count)
+            index += count
+            for byte in unsafeBytes {
+                bytes.append(byte)
+            }
+            return bytes
+        }
+        
+        // Create integer from bytes.
+        func intFromBytes(bytes: UInt8[]) -> Int {
+            var i: Int = 0
+            for byte in endianness == .LittleEndian ? bytes.reverse() : bytes {
+                i <<= 8
+                i |= Int(byte)
+            }
+            return i
+        }
+        func uintFromBytes(bytes: UInt8[]) -> UInt {
+            var i: UInt = 0
+            for byte in endianness == .LittleEndian ? bytes.reverse() : bytes {
+                i <<= 8
+                i |= UInt(byte)
+            }
+            return i
+        }
+        
+        //var psize = sizeof(Int32)
+        
+        for op in self.opStream {
+            // First check ops that don't consume data.
+            switch op {
+                
+            case .Stop:
+                return values
+                
+            case .SetNativeEndian:
+                endianness = self.platformEndianness
+            case .SetLittleEndian:
+                endianness = .LittleEndian
+            case .SetBigEndian:
+                endianness = .BigEndian
+                
+            case .SetAlign:
+                alignment = true
+            case .UnsetAlign:
+                alignment = false
+                
+            case .PackCString, .PackPString:
+                assert(false, "cstring/pstring unimplemented")
+                
+            case .SkipByte:
+                if let bytes = readBytes(1) {
+                    // Discard.
+                } else {
+                    return failure("not enough data for format")
+                }
+            default:
+                let bytesToUnpack = bytesForValue[op]!
+                if let bytes = readBytes(bytesToUnpack) {
+                    
+                    switch op {
+                    
+                    case .SkipByte:
+                        break
+                    
+                    case .PackChar:
+                        values.append(NSString(format: "%c", bytes[0]))
+                        
+                    case .PackInt8:
+                        values.append(Int(bytes[0]))
+                        
+                    case .PackUInt8:
+                        values.append(UInt(bytes[0]))
+                        
+                    case .PackBool:
+                        if bytes[0] == UInt8(0) {
+                            values.append(false)
+                        } else {
+                            values.append(true)
+                        }
+                        
+                    case .PackInt16, .PackInt32, .PackInt64:
+                        values.append(intFromBytes(bytes))
+                        
+                    case .PackUInt16, .PackUInt32, .PackUInt64, .PackPointer:
+                        values.append(uintFromBytes(bytes))
+                        
+                    case .PackFloat, .PackDouble:
+                        assert(false, "float/double unimplemented")
+                        
+                    case .PackCString, .PackPString:
+                        assert(false, "cstring/pstring unimplemented")
+                        
+                    default:
+                        assert(false, "bad op in stream")
+                    }
+                    
+                } else {
+                    return failure("not enough data for format")
+                }
+            }
+            
+        }
+        
+        return values
+    }
+    
+    
+    // Packing.
     
     func pack(values: AnyObject[], format: String, error: NSErrorPointer) -> NSData? {
         if !self.parseFormat(format, error: error) {

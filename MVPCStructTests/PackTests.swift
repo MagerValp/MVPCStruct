@@ -1,6 +1,6 @@
 //
-//  MVPCStructTests.swift
-//  MVPCStructTests
+//  PackTests.swift
+//  MVPCStruct
 //
 //  Created by Per Olofsson on 2014-06-13.
 //  Copyright (c) 2014 AutoMac. All rights reserved.
@@ -9,18 +9,16 @@
 import XCTest
 import MVPCStruct
 
-class MVPCStructTests: XCTestCase {
-    
+class PackTests: XCTestCase {
+
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
+
     func testHello() {
         let facit = "Hello".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
         var error: NSError?
@@ -115,5 +113,5 @@ class MVPCStructTests: XCTestCase {
             XCTFail("bad format should return nil")
         }
     }
-    
+
 }

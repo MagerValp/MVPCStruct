@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		058E72AE194B36DD002168A2 /* PackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E72AD194B36DD002168A2 /* PackTests.swift */; };
+		058E72B0194B3715002168A2 /* UnpackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E72AF194B3715002168A2 /* UnpackTests.swift */; };
 		05A8B6C2194B1718006366DF /* MVPCStruct.h in Headers */ = {isa = PBXBuildFile; fileRef = 05A8B6C1194B1718006366DF /* MVPCStruct.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05A8B6C8194B1718006366DF /* MVPCStruct.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A8B6BC194B1718006366DF /* MVPCStruct.framework */; };
-		05A8B6CF194B1718006366DF /* MVPCStructTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A8B6CE194B1718006366DF /* MVPCStructTests.swift */; };
 		05A8B6D9194B1755006366DF /* CStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A8B6D8194B1755006366DF /* CStruct.swift */; };
 /* End PBXBuildFile section */
 
@@ -24,12 +25,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		058E72AD194B36DD002168A2 /* PackTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PackTests.swift; sourceTree = "<group>"; };
+		058E72AF194B3715002168A2 /* UnpackTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnpackTests.swift; sourceTree = "<group>"; };
 		05A8B6BC194B1718006366DF /* MVPCStruct.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MVPCStruct.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05A8B6C0194B1718006366DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05A8B6C1194B1718006366DF /* MVPCStruct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MVPCStruct.h; sourceTree = "<group>"; };
 		05A8B6C7194B1718006366DF /* MVPCStructTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MVPCStructTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05A8B6CD194B1718006366DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		05A8B6CE194B1718006366DF /* MVPCStructTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPCStructTests.swift; sourceTree = "<group>"; };
 		05A8B6D8194B1755006366DF /* CStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CStruct.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,8 +76,8 @@
 			isa = PBXGroup;
 			children = (
 				05A8B6C1194B1718006366DF /* MVPCStruct.h */,
-				05A8B6BF194B1718006366DF /* Supporting Files */,
 				05A8B6D8194B1755006366DF /* CStruct.swift */,
+				05A8B6BF194B1718006366DF /* Supporting Files */,
 			);
 			path = MVPCStruct;
 			sourceTree = "<group>";
@@ -91,7 +93,8 @@
 		05A8B6CB194B1718006366DF /* MVPCStructTests */ = {
 			isa = PBXGroup;
 			children = (
-				05A8B6CE194B1718006366DF /* MVPCStructTests.swift */,
+				058E72AD194B36DD002168A2 /* PackTests.swift */,
+				058E72AF194B3715002168A2 /* UnpackTests.swift */,
 				05A8B6CC194B1718006366DF /* Supporting Files */,
 			);
 			path = MVPCStructTests;
@@ -221,7 +224,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05A8B6CF194B1718006366DF /* MVPCStructTests.swift in Sources */,
+				058E72AE194B36DD002168A2 /* PackTests.swift in Sources */,
+				058E72B0194B3715002168A2 /* UnpackTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +411,7 @@
 				05A8B6D4194B1718006366DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		05A8B6D5194B1718006366DF /* Build configuration list for PBXNativeTarget "MVPCStructTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +420,7 @@
 				05A8B6D7194B1718006366DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
